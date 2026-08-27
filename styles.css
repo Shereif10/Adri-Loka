@@ -1378,16 +1378,13 @@ body::after {
   .header__nav, .header .btn { display: none; }
   .burger { display: block; }
 
-  /* Menu -> vertical stacked experience */
-  .menu__pin { height: auto; }
-  .menu__viewport { height: auto; overflow: visible; }
-  .menu__track { flex-direction: column; width: 100%; gap: 0; padding-inline: var(--pad); }
-  .menu-panel { width: 100%; padding-block: 3rem; border-top: 1px solid var(--ln); }
-  .menu-panel:first-child { border-top: 0; }
-  .menu-panel::before { font-size: 4.5rem; top: 1.4rem; }
+  /* Menu -> same scroll-driven horizontal experience as desktop (compact) */
+  .menu-panel { width: min(560px, 88vw); }
   .panel__head { flex-wrap: wrap; gap: 0.8rem 1.2rem; }
   .panel__note { margin-left: 0; width: 100%; }
-  .menu__hud, .menu__hint { display: none; }
+  .service { padding-block: 1.05rem; }
+  .service__desc { font-size: 0.84rem; margin-top: 0.4rem; }
+  .menu__hud { bottom: 1.4rem; }
 
   .craft__stage { height: auto; margin-top: 2.5rem; display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
   .craft__f1, .craft__f2, .craft__f3 { position: static; width: 100%; }

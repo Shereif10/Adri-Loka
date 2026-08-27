@@ -226,17 +226,34 @@ const MENU_DATA = [
   function initHeroVideo() {
     const host = qs('#heroMedia');
     if (!host) return;
-    /* Real asset goes here: assets/videos/hero.mp4 */
+    /* Real asset: assets/videos/hero.mp4 */
     const video = document.createElement('video');
     video.className = 'hero__video';
     video.muted = true;
+    video.autoplay = true;
     video.loop = true;
     video.playsInline = true;
     video.preload = 'auto';
     video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
     video.setAttribute('playsinline', '');
+    video.setAttribute('preload', 'auto');
     video.setAttribute('aria-hidden', 'true');
     video.src = 'assets/videos/hero.mp4';
+
+    const tag = '[hero video]';
+    const srcNow = () => video.currentSrc || video.src || '(no source)';
+
+    video.addEventListener('loadedmetadata', () => {
+      console.info(`${tag} metadata OK — ${video.videoWidth}x${video.videoHeight}, ${isFinite(video.duration) ? video.duration.toFixed(1) + 's' : 'unknown duration'}`);
+    });
+    video.addEventListener('loadeddata', () => {
+      console.info(`${tag} first frame data loaded`);
+    });
+    video.addEventListener('playing', () => {
+      console.info(`${tag} playing (${srcNow()})`);
+    });
 
     video.addEventListener('canplay', () => {
       host.classList.add('has-video');
@@ -247,12 +264,35 @@ const MENU_DATA = [
         if (veil) veil.style.opacity = '0';
       }
       const p = video.play();
-      if (p && p.catch) p.catch(() => {});
+      if (p && p.catch) {
+        p.catch(err => {
+          console.warn(`${tag} autoplay did not start: ${err && err.name ? err.name + ' — ' + err.message : err}. Playback will retry when the hero re-enters the viewport.`);
+        });
+      }
       scheduleRefresh();
     }, { once: true });
 
-    video.addEventListener('error', () => video.remove(), { once: true });
+    /* Diagnostic only — never remove the video element silently.
+       If the file exists but will not decode, it almost certainly needs
+       browser-compatible H.264 (video) + AAC (audio) encoding. */
+    video.addEventListener('error', () => {
+      const mediaErr = video.error;
+      const codeNames = { 1: 'MEDIA_ERR_ABORTED', 2: 'MEDIA_ERR_NETWORK', 3: 'MEDIA_ERR_DECODE', 4: 'MEDIA_ERR_SRC_NOT_SUPPORTED' };
+      const code = mediaErr ? mediaErr.code : 'unknown';
+      const name = codeNames[code] || 'UNKNOWN';
+      console.error(
+        `${tag} FAILED — code ${code} (${name})` +
+        (mediaErr && mediaErr.message ? ` — "${mediaErr.message}"` : '') +
+        ` — src: ${srcNow()}` +
+        (code === 3 || code === 4
+          ? '. The file exists but this browser cannot decode it. Re-encode the MP4 as H.264 video + AAC audio (e.g. 1920x1080, yuv420p) — the code is fine, the file encoding is not.'
+          : '. Check that assets/videos/hero.mp4 exists and is served correctly.')
+      );
+    });
+
     host.prepend(video);
+    console.assert(host.contains(video), `${tag} video element was not inserted into #heroMedia`);
+    console.info(`${tag} element inserted into #heroMedia — src: ${video.src}`);
 
     if (hasGsap && !reduced) {
       ScrollTrigger.create({
@@ -758,7 +798,10 @@ const MENU_DATA = [
   function initMenuFX() {
     const mm = gsap.matchMedia();
 
-    mm.add('(min-width: 1024px)', () => {
+    /* Same scroll-driven horizontal menu at every viewport width.
+       Mobile matches desktop exactly: pin -> vertical swipe drives the
+       panels horizontally -> releases after the final panel. */
+    mm.add('(min-width: 320px)', () => {
       const track = qs('#menuTrack');
       const pin = qs('#menuPin');
       if (!track || !pin) return;
@@ -798,15 +841,6 @@ const MENU_DATA = [
         tween.kill();
         gsap.set(track, { clearProps: 'all' });
       };
-    });
-
-    mm.add('(max-width: 1023px)', () => {
-      qsa('.menu-panel').forEach(panel => {
-        gsap.from(qsa('.panel__head, .service', panel), {
-          y: 30, opacity: 0, duration: 0.75, stagger: 0.06, ease: 'power3.out',
-          scrollTrigger: { trigger: panel, start: 'top 84%', once: true }
-        });
-      });
     });
   }
 
