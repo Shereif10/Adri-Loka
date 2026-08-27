@@ -522,6 +522,7 @@ body::after {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 .hero__fallback {
   background:
@@ -530,6 +531,9 @@ body::after {
     radial-gradient(90% 120% at 20% 100%, #1d1813, transparent 60%),
     #0c0b09;
 }
+/* Once the real video can play, the opaque fallback must step aside —
+   as the later sibling it would otherwise paint on top of the video */
+.hero__media.has-video .hero__fallback { display: none; }
 
 .hero__scrim {
   position: absolute;
