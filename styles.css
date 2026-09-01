@@ -71,7 +71,7 @@ iframe { border: 0; }
 body::after {
   content: "";
   position: fixed;
-  inset: -50%;
+  inset: 0;
   z-index: 25;
   pointer-events: none;
   opacity: 0.055;
@@ -251,7 +251,7 @@ body::after {
 .media-frame.has-img::after { opacity: 0; }
 .media-frame.has-img img { opacity: 1; }
 
-.r-169 { aspect-ratio: 16 / 9; }
+.r-169 { aspect-ratio: 16 / 12; }
 .r-21x9 { aspect-ratio: 21 / 9; }
 .r-34 { aspect-ratio: 3 / 4; }
 .r-45 { aspect-ratio: 4 / 5; }
@@ -649,9 +649,9 @@ body::after {
 
 .story__media {
   width: min(1760px, 100%);
+  aspect-ratio: 5 / 3;
   margin: clamp(3.5rem, 7vw, 6.5rem) auto 0;
 }
-
 /* ============================================================
    MENU
    ============================================================ */
@@ -683,7 +683,58 @@ body::after {
   will-change: transform;
 }
 
-.menu-panel { width: min(660px, 78vw); flex-shrink: 0; position: relative; }
+.menu-panel {
+  width: min(660px, 78vw);
+  flex-shrink: 0;
+  position: relative;
+  /* Responsive density — sizing scales with viewport height so every panel
+     fits the pinned 100svh viewport with no internal scrolling. Tiers are
+     applied by the renderer from content units: items x lines
+     (default < 22, dense 22-32, xdense >= 33). */
+  --t-fs: clamp(1.7rem, min(3.4vw, 4.6svh), 2.9rem);
+  --t-sub-fs: clamp(0.8rem, min(1.3vw, 1.75svh), 1.05rem);
+  --t-sub-mt: clamp(0.15rem, 0.4svh, 0.32rem);
+  --head-pb: clamp(0.7rem, 2.1svh, 1.3rem);
+  --list-mt: clamp(0.22rem, 0.6svh, 0.5rem);
+  --svc-pad: clamp(0.4rem, 1.05svh, 1rem);
+  --name-fs: clamp(0.84rem, min(1.55vw, 2.1svh), 1.3rem);
+  --name-lh: 1.15;
+  --sub-fs: clamp(0.68rem, min(1.02vw, 1.38svh), 0.85rem);
+  --sub-lh: 1.28;
+  --sub-mt: clamp(0.15rem, 0.4svh, 0.4rem);
+  --num-fs: clamp(0.52rem, 0.7svh, 0.62rem);
+  --num-mb: clamp(0.08rem, 0.2svh, 0.18rem);
+}
+.menu-panel--dense {
+  --t-fs: clamp(1.6rem, min(3.2vw, 4.3svh), 2.7rem);
+  --t-sub-fs: clamp(0.76rem, min(1.15vw, 1.55svh), 0.95rem);
+  --t-sub-mt: clamp(0.12rem, 0.3svh, 0.26rem);
+  --head-pb: clamp(0.5rem, 1.6svh, 1rem);
+  --list-mt: clamp(0.15rem, 0.42svh, 0.34rem);
+  --svc-pad: clamp(0.2rem, 0.9svh, 0.8rem);
+  --name-fs: clamp(0.78rem, min(1.4vw, 1.85svh), 1.15rem);
+  --name-lh: 1.13;
+  --sub-fs: clamp(0.62rem, min(0.95vw, 1.25svh), 0.78rem);
+  --sub-lh: 1.24;
+  --sub-mt: clamp(0.1rem, 0.26svh, 0.22rem);
+  --num-fs: clamp(0.5rem, 0.64svh, 0.58rem);
+  --num-mb: clamp(0.06rem, 0.17svh, 0.15rem);
+}
+.menu-panel--xdense {
+  --t-fs: clamp(1.7rem, min(2.6vw, 3.7svh), 2.6rem);
+  --t-sub-fs: clamp(0.68rem, min(1.05vw, 1.45svh), 0.92rem);
+  --t-sub-mt: clamp(0.1rem, 0.26svh, 0.22rem);
+  --head-pb: clamp(0.35rem, 1.2svh, 0.75rem);
+  --list-mt: clamp(0.12rem, 0.35svh, 0.28rem);
+  --svc-pad: clamp(0.06rem, 0.28svh, 0.3rem);
+  --name-fs: clamp(0.72rem, min(1.2vw, 1.55svh), 1rem);
+  --name-lh: 1.02;
+  --sub-fs: clamp(0.6rem, min(0.9vw, 1.3svh), 0.74rem);
+  --sub-lh: 1.08;
+  --sub-mt: clamp(0.04rem, 0.12svh, 0.14rem);
+  --num-fs: clamp(0.46rem, 0.62svh, 0.56rem);
+  --num-mb: clamp(0.04rem, 0.12svh, 0.12rem);
+}
 .menu-panel::before {
   content: attr(data-num);
   position: absolute;
@@ -700,7 +751,7 @@ body::after {
   display: flex;
   align-items: baseline;
   gap: 1.4rem;
-  padding-bottom: 1.6rem;
+  padding-bottom: var(--head-pb);
   border-bottom: 1px solid var(--tx);
 }
 .panel__num {
@@ -708,20 +759,32 @@ body::after {
   letter-spacing: 0.25em;
   color: var(--bronze);
 }
+.panel__titles { min-width: 0; }
 .panel__title {
-  font: 800 clamp(1.9rem, 3.4vw, 3rem)/1 var(--sans);
+  font: 800 var(--t-fs)/1 var(--sans);
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
-.panel__note { margin-left: auto; color: var(--dim); font-size: 0.85rem; font-style: italic; font-family: var(--serif); font-weight: 300; }
+.panel__title-ar {
+  margin-top: var(--t-sub-mt);
+  font: 600 var(--t-sub-fs)/1.4 var(--sans);
+  color: var(--dim);
+}
 
-.panel__list { margin-top: 0.6rem; }
-.service { padding-block: 1.5rem; border-bottom: 1px solid var(--ln); }
+.panel__list { margin-top: var(--list-mt); }
+.service { padding-block: var(--svc-pad); border-bottom: 1px solid var(--ln); }
 .service__top { display: flex; align-items: baseline; gap: 1.1rem; }
 .service__name {
-  font: 700 clamp(1.05rem, 1.7vw, 1.4rem)/1.2 var(--sans);
+  font: 700 var(--name-fs)/var(--name-lh) var(--sans);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+.service__num {
+  display: block;
+  margin-bottom: var(--num-mb);
+  font: 400 var(--num-fs)/1.2 var(--mono);
+  letter-spacing: 0.22em;
+  color: var(--bronze);
 }
 .service__leader {
   flex: 1;
@@ -732,25 +795,8 @@ body::after {
   background-size: 7px 1px;
   background-repeat: repeat-x;
 }
-.service__price {
-  font: 500 1rem/1 var(--mono);
-  letter-spacing: 0.08em;
-  color: var(--bronze-2);
-  white-space: nowrap;
-}
-.service__desc { margin-top: 0.55rem; color: var(--dim); font-size: 0.9rem; max-width: 30em; }
-.service__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-top: 0.95rem;
-}
-.service__dur {
-  font: 400 0.6rem/1 var(--mono);
-  letter-spacing: 0.3em;
-  color: var(--faint);
-}
+
+.service__desc { margin-top: var(--sub-mt); color: var(--dim); font-size: var(--sub-fs); line-height: var(--sub-lh); max-width: 30em; }
 
 .menu__hud {
   position: absolute;
@@ -770,9 +816,6 @@ body::after {
   transform: scaleX(0);
   transform-origin: left;
 }
-
-/* Mobile menu alternative */
-.mobile-only { display: none; }
 
 /* ============================================================
    CRAFT
@@ -1049,22 +1092,6 @@ body::after {
 .field:focus-within .field__bar { transform: scaleX(1); }
 .field.is-flash .field__bar { transform: scaleX(1); background: var(--bronze-2); }
 .field.is-flash label { color: var(--bronze-2); }
-
-.field--select select {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  padding-right: 2rem;
-}
-.field--select option { background: #171310; color: var(--ivory); }
-.field__chevron {
-  position: absolute;
-  right: 0;
-  bottom: 0.9rem;
-  color: var(--bronze);
-  pointer-events: none;
-  font-size: 0.9rem;
-}
 
 .booking__form .btn--lg { justify-self: start; margin-top: 0.5rem; }
 #bookingSubmit.is-sent { opacity: 0.55; pointer-events: none; }
@@ -1368,9 +1395,6 @@ body::after {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (min-width: 1024px) {
-  .mobile-menu-alt { display: contents; }
-}
 
 @media (max-width: 1180px) {
   .tools { grid-template-columns: repeat(2, 1fr); }
@@ -1385,9 +1409,6 @@ body::after {
   /* Menu -> same scroll-driven horizontal experience as desktop (compact) */
   .menu-panel { width: min(560px, 88vw); }
   .panel__head { flex-wrap: wrap; gap: 0.8rem 1.2rem; }
-  .panel__note { margin-left: 0; width: 100%; }
-  .service { padding-block: 1.05rem; }
-  .service__desc { font-size: 0.84rem; margin-top: 0.4rem; }
   .menu__hud { bottom: 1.4rem; }
 
   .craft__stage { height: auto; margin-top: 2.5rem; display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
@@ -1429,7 +1450,7 @@ body::after {
   .lb-3 { aspect-ratio: 4 / 5; }
   .lb-4 { aspect-ratio: 1 / 1; }
   .lb-5 { aspect-ratio: 4 / 5; }
-  .lb-6 { aspect-ratio: 16 / 10; }
+  .lb-6 { aspect-ratio: 4 / 5; }
 
   .tools { grid-template-columns: 1fr; gap: 1.6rem; }
 

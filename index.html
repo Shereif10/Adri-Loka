@@ -1,479 +1,949 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADRI &amp; LOKA — Barbershop</title>
-  <meta name="description" content="ADRI & LOKA is an appointment-only barbershop. Sharp cuts, strong presence — precision grooming for men who take their reflection seriously.">
-  <meta name="theme-color" content="#0E0D0B">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADRI &amp; LOKA — Barbershop</title>
+    <meta
+      name="description"
+      content="ADRI & LOKA is an appointment-only barbershop. Sharp cuts, strong presence — precision grooming for men who take their reflection seriously."
+    />
+    <meta name="theme-color" content="#0E0D0B" />
 
-  <link rel="icon" type="image/png" href="assets/logo/adri-loka-logo.png">
+    <link rel="icon" type="image/png" href="assets/logo/adri-loka-logo.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
-</head>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="assets/logo/adri-loka-logo.png" />
+    <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
 
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ============================================================
+    <!-- ============================================================
        LOADER
        ============================================================ -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <img class="loader__mark" src="assets/logo/adri-loka-logo.png" alt="ADRI &amp; LOKA Barbershop">
-      <p class="loader__tag">BARBERSHOP</p>
-      <div class="loader__bar"><span id="loaderBar"></span></div>
-      <div class="loader__count"><span id="loaderCount">00</span></div>
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader__inner">
+        <img
+          class="loader__mark"
+          src="assets/logo/adri-loka-logo.png"
+          alt="ADRI &amp; LOKA Barbershop"
+        />
+        <p class="loader__tag">BARBERSHOP</p>
+        <div class="loader__bar"><span id="loaderBar"></span></div>
+        <div class="loader__count"><span id="loaderCount">00</span></div>
+      </div>
     </div>
-  </div>
 
-  <!-- ============================================================
+    <!-- ============================================================
        HEADER / NAVBAR
        ============================================================ -->
-  <header class="header" id="header">
-    <a class="header__brand" href="#home" aria-label="ADRI &amp; LOKA — back to top">
-      <img class="brand-logo" src="assets/logo/adri-loka-logo.png" alt="ADRI &amp; LOKA Barbershop" width="1135" height="1134">
-    </a>
+    <header class="header" id="header">
+      <a
+        class="header__brand"
+        href="#home"
+        aria-label="ADRI &amp; LOKA — back to top"
+      >
+        <img
+          class="brand-logo"
+          src="assets/logo/adri-loka-logo.png"
+          alt="ADRI &amp; LOKA Barbershop"
+          width="1135"
+          height="1134"
+        />
+      </a>
 
-    <nav class="header__nav" aria-label="Primary">
-      <ul>
-        <li><a href="#home" data-nav-link="#home"><sup>01</sup>Home</a></li>
-        <li><a href="#story" data-nav-link="#story"><sup>02</sup>Story</a></li>
-        <li><a href="#menu" data-nav-link="#menu"><sup>03</sup>Menu</a></li>
-        <li><a href="#lookbook" data-nav-link="#lookbook"><sup>04</sup>Lookbook</a></li>
-        <li><a href="#about" data-nav-link="#about"><sup>05</sup>About</a></li>
-        <li><a href="#location" data-nav-link="#location"><sup>06</sup>Location</a></li>
-      </ul>
-    </nav>
-
-    <div class="header__actions">
-      <a class="btn btn--solid btn--sm" href="#booking" data-magnetic>Book Now</a>
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ============================================================
-       MOBILE FULLSCREEN MENU
-       ============================================================ -->
-  <div class="mmenu" id="mobileMenu" aria-hidden="true">
-    <div class="mmenu__inner">
-      <nav aria-label="Mobile">
-        <ul class="mmenu__list">
-          <li><a href="#home"><i>01</i><span>Home</span></a></li>
-          <li><a href="#story"><i>02</i><span>Story</span></a></li>
-          <li><a href="#menu"><i>03</i><span>Menu</span></a></li>
-          <li><a href="#lookbook"><i>04</i><span>Lookbook</span></a></li>
-          <li><a href="#about"><i>05</i><span>About</span></a></li>
-          <li><a href="#location"><i>06</i><span>Location</span></a></li>
-          <li class="mmenu__cta-item"><a class="mmenu__cta" href="#booking"><i>07</i><span>Book Now <em>&#8599;</em></span></a></li>
+      <nav class="header__nav" aria-label="Primary">
+        <ul>
+          <li>
+            <a href="#home" data-nav-link="#home"><sup>01</sup>Home</a>
+          </li>
+          <li>
+            <a href="#story" data-nav-link="#story"><sup>02</sup>Story</a>
+          </li>
+          <li>
+            <a href="#menu" data-nav-link="#menu"><sup>03</sup>Menu</a>
+          </li>
+          <li>
+            <a href="#lookbook" data-nav-link="#lookbook"
+              ><sup>04</sup>Lookbook</a
+            >
+          </li>
+          <li>
+            <a href="#about" data-nav-link="#about"><sup>05</sup>About</a>
+          </li>
+          <li>
+            <a href="#location" data-nav-link="#location"
+              ><sup>06</sup>Location</a
+            >
+          </li>
         </ul>
       </nav>
-      <div class="mmenu__foot">
-        <!-- TODO: replace phone number with the real shop number -->
-        <a href="tel:+15550100100">+1 (555) 010-0100</a>
-        <div class="mmenu__social">
-          <a href="#" data-social="instagram" target="_blank" rel="noopener">Instagram &#8599;</a>
-          <a href="#" data-social="facebook" target="_blank" rel="noopener">Facebook &#8599;</a>
+
+      <div class="header__actions">
+        <a class="btn btn--solid btn--sm" href="#booking" data-magnetic
+          >Book Now</a
+        >
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============================================================
+       MOBILE FULLSCREEN MENU
+       ============================================================ -->
+    <div class="mmenu" id="mobileMenu" aria-hidden="true">
+      <div class="mmenu__inner">
+        <nav aria-label="Mobile">
+          <ul class="mmenu__list">
+            <li>
+              <a href="#home"><i>01</i><span>Home</span></a>
+            </li>
+            <li>
+              <a href="#story"><i>02</i><span>Story</span></a>
+            </li>
+            <li>
+              <a href="#menu"><i>03</i><span>Menu</span></a>
+            </li>
+            <li>
+              <a href="#lookbook"><i>04</i><span>Lookbook</span></a>
+            </li>
+            <li>
+              <a href="#about"><i>05</i><span>About</span></a>
+            </li>
+            <li>
+              <a href="#location"><i>06</i><span>Location</span></a>
+            </li>
+            <li class="mmenu__cta-item">
+              <a class="mmenu__cta" href="#booking"
+                ><i>07</i><span>Book Now <em>&#8599;</em></span></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="mmenu__foot">
+          <!-- TODO: replace phone number with the real shop number -->
+          <a
+            href="tel:+201152876653
+"
+            >+201152876653
+          </a>
+          <div class="mmenu__social">
+            <a
+              href="https://www.instagram.com/adriloka.eg/"
+              data-social="instagram"
+              target="_blank"
+              rel="noopener"
+              >Instagram &#8599;</a
+            >
+            <a
+              href="https://www.facebook.com/profile.php?id=61584799082603"
+              data-social="facebook"
+              target="_blank"
+              rel="noopener"
+              >Facebook &#8599;</a
+            >
+            <a
+              href="https://www.tiktok.com/@adriloka.eg"
+              data-social="Tiktok"
+              target="_blank"
+              rel="noopener"
+              >Tiktok &#8599;</a
+            >
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <main id="main">
-
-    <!-- ==========================================================
+    <main id="main">
+      <!-- ==========================================================
          00 — HERO
          Real video asset: assets/videos/hero.mp4
          (JS injects it automatically; without it a styled fallback shows)
          ========================================================== -->
-    <section class="hero" id="home" data-section="#home">
-      <div class="hero__media" id="heroMedia">
-        <div class="hero__fallback" aria-hidden="true"></div>
-      </div>
-      <div class="hero__scrim" aria-hidden="true"></div>
-      <div class="hero__veil" id="heroVeil" aria-hidden="true"></div>
+      <section class="hero" id="home" data-section="#home">
+        <div class="hero__media" id="heroMedia">
+          <div class="hero__fallback" aria-hidden="true"></div>
+        </div>
+        <div class="hero__scrim" aria-hidden="true"></div>
+        <div class="hero__veil" id="heroVeil" aria-hidden="true"></div>
 
-      <div class="container hero__content">
-        <p class="eyebrow hero__eyebrow"><span class="eyebrow__line"></span>ADRI &amp; LOKA &mdash; Barbershop</p>
-        <h1 class="hero__title">
-          <span class="rl"><span class="rl__i">Sharp cuts<b>.</b></span></span>
-          <span class="rl rl--serif"><span class="rl__i">strong presence<b>.</b></span></span>
-        </h1>
-        <p class="hero__sub">An appointment-only grooming studio for men who take their reflection seriously.</p>
-        <div class="hero__ctas">
-          <a class="btn btn--ghost" href="#menu" data-magnetic>View Menu</a>
-          <a class="btn btn--solid" href="#booking" data-magnetic>Book an Appointment</a>
+        <div class="container hero__content">
+          <p class="eyebrow hero__eyebrow">
+            <span class="eyebrow__line"></span>ADRI &amp; LOKA &mdash;
+            Barbershop
+          </p>
+          <h1 class="hero__title">
+            <span class="rl"
+              ><span class="rl__i">Sharp cuts<b>.</b></span></span
+            >
+            <span class="rl rl--serif"
+              ><span class="rl__i">strong presence<b>.</b></span></span
+            >
+          </h1>
+          <p class="hero__sub">
+            An appointment-only grooming studio for men who take their
+            reflection seriously.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--ghost" href="#menu" data-magnetic>View Menu</a>
+            <a class="btn btn--solid" href="#booking" data-magnetic
+              >Book an Appointment</a
+            >
+          </div>
+        </div>
+
+        <div class="hero__cue" aria-hidden="true">
+          <span class="hero__cue-label">Scroll</span>
+          <span class="hero__cue-line"></span>
+        </div>
+      </section>
+
+      <!-- Marquee strip -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span
+            >Precision &bull; Craft &bull; Confidence &bull; Discipline &bull;
+            Style &bull;&nbsp;</span
+          >
+          <span
+            >Precision &bull; Craft &bull; Confidence &bull; Discipline &bull;
+            Style &bull;&nbsp;</span
+          >
         </div>
       </div>
 
-      <div class="hero__cue" aria-hidden="true">
-        <span class="hero__cue-label">Scroll</span>
-        <span class="hero__cue-line"></span>
-      </div>
-    </section>
-
-    <!-- Marquee strip -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Precision &bull; Craft &bull; Confidence &bull; Discipline &bull; Style &bull;&nbsp;</span>
-        <span>Precision &bull; Craft &bull; Confidence &bull; Discipline &bull; Style &bull;&nbsp;</span>
-      </div>
-    </div>
-
-    <!-- ==========================================================
+      <!-- ==========================================================
          01 — STORY
          Image slot: assets/images/story-main.jpg
          ========================================================== -->
-    <section class="story section" id="story" data-section="#story">
-      <div class="container">
-        <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>01 &mdash; The Story</p>
-        <h2 class="display story__title" data-scrub-lines>
-          <span class="rl" data-line-dir="-1"><span class="rl__i">More than</span></span>
-          <span class="rl rl--serif" data-line-dir="1"><span class="rl__i">a haircut<b>.</b></span></span>
-        </h2>
-        <div class="story__grid">
-          <p class="lede" data-reveal>A haircut is never just a haircut. It is thirty minutes where the world waits, the chair becomes a throne &mdash; and you leave carrying yourself differently.</p>
-          <p class="body-sm story__copy" data-reveal>Sharp work. Steady hands. No shortcuts. That is the whole philosophy, and it has been since the first cut.</p>
+      <section class="story section" id="story" data-section="#story">
+        <div class="container">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__line"></span>01 &mdash; The Story
+          </p>
+          <h2 class="display story__title" data-scrub-lines>
+            <span class="rl" data-line-dir="-1"
+              ><span class="rl__i">More than</span></span
+            >
+            <span class="rl rl--serif" data-line-dir="1"
+              ><span class="rl__i">a haircut<b>.</b></span></span
+            >
+          </h2>
+          <div class="story__grid">
+            <p class="lede" data-reveal>
+              A haircut is never just a haircut. It is thirty minutes where the
+              world waits, the chair becomes a throne &mdash; and you leave
+              carrying yourself differently.
+            </p>
+            <p class="body-sm story__copy" data-reveal>
+              Sharp work. Steady hands. No shortcuts. That is the whole
+              philosophy, and it has been since the first cut.
+            </p>
+          </div>
         </div>
-      </div>
-      <figure class="media-frame story__media r-21x9" data-media="images/story-main.jpg" data-alt="A barber at work inside the ADRI &amp; LOKA studio" data-parallax>
-      </figure>
-    </section>
+        <figure
+          class="media-frame story__media r-21x9"
+          data-media="images/story-main.jpg"
+          data-alt="A barber at work inside the ADRI &amp; LOKA studio"
+          data-parallax
+        ></figure>
+      </section>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          02 — MENU (rendered from MENU_DATA in script.js)
          ========================================================== -->
-    <section class="menu section" id="menu" data-section="#menu">
-      <div class="container menu__head">
-        <div>
-          <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>02 &mdash; Service Menu</p>
-          <h2 class="display menu__title" data-reveal>The service <em>menu<b>.</b></em></h2>
+      <section class="menu section" id="menu" data-section="#menu">
+        <div class="container menu__head">
+          <div>
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__line"></span>02 &mdash; Service Menu
+            </p>
+            <h2 class="display menu__title" data-reveal>
+              The service <em>menu<b>.</b></em>
+            </h2>
+          </div>
+          <div class="menu__aside" data-reveal>
+            <p>Twelve disciplines.<br />One standard.</p>
+            <p class="menu__hint">( Scroll )</p>
+          </div>
         </div>
-        <div class="menu__aside" data-reveal>
-          <p>Five disciplines.<br>One standard.</p>
-          <p class="menu__hint">( Scroll )</p>
-        </div>
-      </div>
 
-      <div class="menu__pin" id="menuPin">
-        <div class="menu__viewport">
-          <div class="menu__track" id="menuTrack"><!-- panels injected by JS --></div>
+        <div class="menu__pin" id="menuPin">
+          <div class="menu__viewport">
+            <div class="menu__track" id="menuTrack">
+              <!-- panels injected by JS -->
+            </div>
+          </div>
+          <div class="menu__hud" aria-hidden="true">
+            <span class="menu__counter"
+              ><b id="menuIndex">01</b>&thinsp;/&thinsp;<span id="menuTotal"
+                >05</span
+              ></span
+            >
+            <span class="menu__progress"><span id="menuProgress"></span></span>
+          </div>
         </div>
-        <div class="menu__hud" aria-hidden="true">
-          <span class="menu__counter"><b id="menuIndex">01</b>&thinsp;/&thinsp;<span id="menuTotal">05</span></span>
-          <span class="menu__progress"><span id="menuProgress"></span></span>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          03 — THE CRAFT
          Image slots: assets/images/craft-01.jpg / craft-02.jpg / craft-03.jpg
          ========================================================== -->
-    <section class="craft section" id="craft" data-section="#craft">
-      <div class="container">
-        <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>03 &mdash; The Craft</p>
-        <h2 class="display craft__title">
-          <span class="rl"><span class="rl__i" data-reveal>Precision</span></span>
-          <span class="rl rl--serif"><span class="rl__i" data-reveal>is the point<b>.</b></span></span>
-        </h2>
-      </div>
+      <section class="craft section" id="craft" data-section="#craft">
+        <div class="container">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__line"></span>03 &mdash; The Craft
+          </p>
+          <h2 class="display craft__title">
+            <span class="rl"
+              ><span class="rl__i" data-reveal>Precision</span></span
+            >
+            <span class="rl rl--serif"
+              ><span class="rl__i" data-reveal>is the point<b>.</b></span></span
+            >
+          </h2>
+        </div>
 
-      <div class="craft__stage container-wide">
-        <figure class="media-frame craft__f1 r-34" data-media="images/craft-01.jpg" data-alt="Close-up of barber scissors" data-parallax data-depth="14"></figure>
-        <figure class="media-frame craft__f2 r-45" data-media="images/craft-02.jpg" data-alt="Clipper detail during a fade" data-parallax data-depth="22"></figure>
-        <figure class="media-frame craft__f3 r-169" data-media="images/craft-03.jpg" data-alt="Straight razor and hot towel" data-parallax data-depth="8"></figure>
-        <span class="craft__ghost" aria-hidden="true">Steel</span>
-      </div>
+        <div class="craft__stage container-wide">
+          <figure
+            class="media-frame craft__f1 r-34"
+            data-media="images/craft-01.jpg"
+            data-alt="Close-up of barber scissors"
+            data-parallax
+            data-depth="14"
+          ></figure>
+          <figure
+            class="media-frame craft__f2 r-45"
+            data-media="images/craft-02.jpg"
+            data-alt="Clipper detail during a fade"
+            data-parallax
+            data-depth="22"
+          ></figure>
+          <figure
+            class="media-frame craft__f3 r-169"
+            data-media="images/craft-03.jpg"
+            data-alt="Straight razor and hot towel"
+            data-parallax
+            data-depth="8"
+          ></figure>
+          <span class="craft__ghost" aria-hidden="true">Steel</span>
+        </div>
 
-      <div class="container">
-        <ul class="tools" data-reveal-group>
-          <li class="tool"><span class="tool__num">01</span><h3 class="tool__name">Scissors</h3><p class="tool__desc">Japanese steel, honed weekly.</p></li>
-          <li class="tool"><span class="tool__num">02</span><h3 class="tool__name">Clippers</h3><p class="tool__desc">Zero-gap fades. Exact grades.</p></li>
-          <li class="tool"><span class="tool__num">03</span><h3 class="tool__name">Straight razor</h3><p class="tool__desc">Edges that read like typography.</p></li>
-          <li class="tool"><span class="tool__num">04</span><h3 class="tool__name">Hot towel</h3><p class="tool__desc">Steam, cedar oil, full reset.</p></li>
-        </ul>
-      </div>
-    </section>
+        <div class="container">
+          <ul class="tools" data-reveal-group>
+            <li class="tool">
+              <span class="tool__num">01</span>
+              <h3 class="tool__name">Scissors</h3>
+              <p class="tool__desc">Japanese steel, honed weekly.</p>
+            </li>
+            <li class="tool">
+              <span class="tool__num">02</span>
+              <h3 class="tool__name">Clippers</h3>
+              <p class="tool__desc">Zero-gap fades. Exact grades.</p>
+            </li>
+            <li class="tool">
+              <span class="tool__num">03</span>
+              <h3 class="tool__name">Straight razor</h3>
+              <p class="tool__desc">Edges that read like typography.</p>
+            </li>
+            <li class="tool">
+              <span class="tool__num">04</span>
+              <h3 class="tool__name">Hot towel</h3>
+              <p class="tool__desc">Steam, cedar oil, full reset.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          04 — LOOKBOOK
          Image slots: assets/images/lookbook-01.jpg ... lookbook-06.jpg
          ========================================================== -->
-    <section class="lookbook section" id="lookbook" data-section="#lookbook">
-      <span class="lookbook__ghost" id="lookbookGhost" aria-hidden="true">Lookbook</span>
-      <div class="container">
-        <div class="lookbook__head">
-          <div>
-            <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>04 &mdash; Lookbook</p>
-            <h2 class="display" data-reveal>Fresh from <em>the chair<b>.</b></em></h2>
+      <section class="lookbook section" id="lookbook" data-section="#lookbook">
+        <span class="lookbook__ghost" id="lookbookGhost" aria-hidden="true"
+          >Lookbook</span
+        >
+        <div class="container">
+          <div class="lookbook__head">
+            <div>
+              <p class="eyebrow" data-reveal>
+                <span class="eyebrow__line"></span>04 &mdash; Lookbook
+              </p>
+              <h2 class="display" data-reveal>
+                Fresh from <em>the chair<b>.</b></em>
+              </h2>
+            </div>
+            <p class="body-sm lookbook__note" data-reveal>
+              No filters needed. Just steel, light, and men who showed up.
+            </p>
           </div>
-          <p class="body-sm lookbook__note" data-reveal>No filters needed. Just steel, light, and men who showed up.</p>
-        </div>
 
-        <div class="lookbook__grid" id="lookbookGrid">
-          <figure class="lb lb-1 media-frame r-34" data-media="images/lookbook-01.jpg" data-alt="Lookbook photo 01" data-cap="Look 01 — The executive contour"></figure>
-          <figure class="lb lb-2 media-frame r-45" data-media="images/lookbook-02.jpg" data-alt="Lookbook photo 02" data-cap="Look 02 — Low taper, clean line-up"></figure>
-          <figure class="lb lb-3 media-frame r-11" data-media="images/lookbook-03.jpg" data-alt="Lookbook photo 03" data-cap="Look 03 — Beard architecture"></figure>
-          <figure class="lb lb-4 media-frame r-45" data-media="images/lookbook-04.jpg" data-alt="Lookbook photo 04" data-cap="Look 04 — Skin fade, matte finish"></figure>
-          <figure class="lb lb-5 media-frame r-34" data-media="images/lookbook-05.jpg" data-alt="Lookbook photo 05" data-cap="Look 05 — Textured crop"></figure>
-          <figure class="lb lb-6 media-frame r-169" data-media="images/lookbook-06.jpg" data-alt="Lookbook photo 06" data-cap="Look 06 — The full ritual"></figure>
+          <div class="lookbook__grid" id="lookbookGrid">
+            <figure
+              class="lb lb-1 media-frame r-34"
+              data-media="images/lookbook-01.jpg"
+              data-alt="Lookbook photo 01"
+              data-cap="Look 01 — Textured Crop Fade"
+            ></figure>
+            <figure
+              class="lb lb-2 media-frame r-45"
+              data-media="images/lookbook-02.jpg"
+              data-alt="Lookbook photo 02"
+              data-cap="Look 02 — Buzz Cut with Mid Fade"
+            ></figure>
+            <figure
+              class="lb lb-3 media-frame r-11"
+              data-media="images/lookbook-03.jpg"
+              data-alt="Lookbook photo 03"
+              data-cap="Look 03 — Curly Crop Fade"
+            ></figure>
+            <figure
+              class="lb lb-4 media-frame r-45"
+              data-media="images/lookbook-04.jpg"
+              data-alt="Lookbook photo 04"
+              data-cap="Look 04 — Textured Quiff Fade"
+            ></figure>
+            <figure
+              class="lb lb-5 media-frame r-34"
+              data-media="images/lookbook-05.jpg"
+              data-alt="Lookbook photo 05"
+              data-cap="Look 05 — Classic Side Part Fade"
+            ></figure>
+            <figure
+              class="lb lb-6 media-frame r-169"
+              data-media="images/lookbook-06.jpg"
+              data-alt="Lookbook photo 06"
+              data-cap="Look 06 — Wet Look Slick Back Fade"
+            ></figure>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          05 — EXPERIENCE
          Image slot: assets/images/experience-side.jpg
          ========================================================== -->
-    <section class="exp section" id="experience">
-      <div class="container exp__grid">
-        <div class="exp__sticky">
-          <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>05 &mdash; The Experience</p>
-          <h2 class="display exp__title" data-reveal>Come for the cut.<br><em>Stay for the ritual<b>.</b></em></h2>
-          <figure class="media-frame exp__media r-45" data-media="images/experience-side.jpg" data-alt="The ADRI &amp; LOKA studio interior" data-parallax></figure>
+      <section class="exp section" id="experience">
+        <div class="container exp__grid">
+          <div class="exp__sticky">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__line"></span>05 &mdash; The Experience
+            </p>
+            <h2 class="display exp__title" data-reveal>
+              Come for the cut.<br /><em>Stay for the ritual<b>.</b></em>
+            </h2>
+            <figure
+              class="media-frame exp__media r-45"
+              data-media="images/experience-side.jpg"
+              data-alt="The ADRI &amp; LOKA studio interior"
+              data-parallax
+            ></figure>
+          </div>
+
+          <ol class="steps" id="stepsList">
+            <li class="step">
+              <span class="step__num">01</span>
+              <div>
+                <h3 class="step__name">Consultation</h3>
+                <p class="step__desc">
+                  We talk first. Your hair, your habits, your life.
+                </p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num">02</span>
+              <div>
+                <h3 class="step__name">The Cut</h3>
+                <p class="step__desc">
+                  Architecture, not assembly. Built to your bone structure.
+                </p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num">03</span>
+              <div>
+                <h3 class="step__name">Beard &amp; Shave</h3>
+                <p class="step__desc">
+                  Lines drawn with intention, finished with cold steel.
+                </p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num">04</span>
+              <div>
+                <h3 class="step__name">Hot Towel</h3>
+                <p class="step__desc">
+                  Heat opens. Steel closes. Skin breathes.
+                </p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num">05</span>
+              <div>
+                <h3 class="step__name">Styling</h3>
+                <p class="step__desc">
+                  Product matched to texture. Taught, not sold.
+                </p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num">06</span>
+              <div>
+                <h3 class="step__name">Final Touch</h3>
+                <p class="step__desc">
+                  The mirror moment. Adjust, approve, walk out heavier.
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
+      </section>
 
-        <ol class="steps" id="stepsList">
-          <li class="step"><span class="step__num">01</span><div><h3 class="step__name">Consultation</h3><p class="step__desc">We talk first. Your hair, your habits, your life.</p></div></li>
-          <li class="step"><span class="step__num">02</span><div><h3 class="step__name">The Cut</h3><p class="step__desc">Architecture, not assembly. Built to your bone structure.</p></div></li>
-          <li class="step"><span class="step__num">03</span><div><h3 class="step__name">Beard &amp; Shave</h3><p class="step__desc">Lines drawn with intention, finished with cold steel.</p></div></li>
-          <li class="step"><span class="step__num">04</span><div><h3 class="step__name">Hot Towel</h3><p class="step__desc">Heat opens. Steel closes. Skin breathes.</p></div></li>
-          <li class="step"><span class="step__num">05</span><div><h3 class="step__name">Styling</h3><p class="step__desc">Product matched to texture. Taught, not sold.</p></div></li>
-          <li class="step"><span class="step__num">06</span><div><h3 class="step__name">Final Touch</h3><p class="step__desc">The mirror moment. Adjust, approve, walk out heavier.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ==========================================================
+      <!-- ==========================================================
          06 — ABOUT
          Image slots: assets/images/about-main.jpg
          ========================================================== -->
-    <section class="about section section--light" id="about" data-section="#about">
-      <div class="container about__grid">
-        <div class="about__copy">
-          <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>06 &mdash; The Shop</p>
-          <h2 class="display about__title" data-reveal>A quiet room.<br><em>Sharp results<b>.</b></em></h2>
-          <p class="lede" data-reveal><!-- TODO: confirm the real opening year -->Founded in 2020, ADRI &amp; LOKA is a six-chair studio built on one belief: a man&rsquo;s haircut should work as hard as he does.</p>
-          <p class="body-sm" data-reveal>No walk-in chaos. No rushed chairs. Espresso on arrival, music low, and a barber who remembers exactly how you like it.</p>
-          <blockquote class="about__quote" data-reveal>&ldquo;Look like the man you already are &mdash; on your best day.&rdquo;</blockquote>
-          <ul class="about__facts" data-reveal-group>
-            <li><span>Est.</span><b>2020</b></li>
-            <li><span>Chairs</span><b>Six</b></li>
-            <li><span>Bookings</span><b>By appointment only</b></li>
-          </ul>
+      <section
+        class="about section section--light"
+        id="about"
+        data-section="#about"
+      >
+        <div class="container about__grid">
+          <div class="about__copy">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__line"></span>06 &mdash; The Shop
+            </p>
+            <h2 class="display about__title" data-reveal>
+              A quiet room.<br /><em>Sharp results<b>.</b></em>
+            </h2>
+            <p class="lede" data-reveal>
+              <!-- TODO: confirm the real opening year -->Founded in 2020, ADRI
+              &amp; LOKA is a six-chair studio built on one belief: a
+              man&rsquo;s haircut should work as hard as he does.
+            </p>
+            <p class="body-sm" data-reveal>
+              No walk-in chaos. No rushed chairs. Espresso on arrival, music
+              low, and a barber who remembers exactly how you like it.
+            </p>
+            <blockquote class="about__quote" data-reveal>
+              &ldquo;Look like the man you already are &mdash; on your best
+              day.&rdquo;
+            </blockquote>
+            <ul class="about__facts" data-reveal-group>
+              <li><span>Est.</span><b>2020</b></li>
+              <li><span>Chairs</span><b>Ten</b></li>
+              <li><span>Bookings</span><b>By appointment or attending</b></li>
+            </ul>
+          </div>
+          <figure
+            class="media-frame about__media r-34"
+            data-media="images/about-main.jpg"
+            data-alt="Inside the ADRI &amp; LOKA barbershop"
+            data-parallax
+          ></figure>
         </div>
-        <figure class="media-frame about__media r-34" data-media="images/about-main.jpg" data-alt="Inside the ADRI &amp; LOKA barbershop" data-parallax></figure>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          07 — BOOKING
          ========================================================== -->
-    <section class="booking section" id="booking" data-section="#booking">
-      <div class="container">
-        <div class="booking__head">
-          <div>
-            <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>07 &mdash; Appointments</p>
-            <h2 class="display" data-reveal>Reserve <em>your chair<b>.</b></em></h2>
+      <section class="booking section" id="booking" data-section="#booking">
+        <div class="container">
+          <div class="booking__head">
+            <div>
+              <p class="eyebrow" data-reveal>
+                <span class="eyebrow__line"></span>07 &mdash; Appointments
+              </p>
+              <h2 class="display" data-reveal>
+                Reserve <em>your chair<b>.</b></em>
+              </h2>
+            </div>
+            <p class="body-sm booking__note" data-reveal>
+              Pick a day, pick a time. We confirm on WhatsApp within the hour.
+            </p>
           </div>
-          <p class="body-sm booking__note" data-reveal>Pick a service, pick a time. We confirm on WhatsApp within the hour.</p>
+
+          <div class="booking__grid">
+            <form class="booking__form" id="bookingForm" novalidate>
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Your name"
+                  required
+                />
+                <span class="field__bar"></span>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder="+201152876653
+"
+                  pattern="[0-9+\-\s\(\)]{7,}"
+                  title="Please enter a valid phone number."
+                  required
+                />
+                <span class="field__bar"></span>
+              </div>
+              <div class="field">
+                <label for="dateInput">Date</label>
+                <input type="date" id="dateInput" name="date" required />
+                <span class="field__bar"></span>
+              </div>
+              <div class="field">
+                <label for="timeInput">Time</label>
+                <input type="time" id="timeInput" name="time" required />
+                <span class="field__bar"></span>
+              </div>
+              <div class="field field--full">
+                <label for="notesInput"
+                  >Additional notes <span class="opt">(optional)</span></label
+                >
+                <textarea
+                  id="notesInput"
+                  name="notes"
+                  rows="3"
+                  placeholder="Reference photos, allergies, anything we should know&hellip;"
+                ></textarea>
+                <span class="field__bar"></span>
+              </div>
+              <button
+                type="submit"
+                class="btn btn--solid btn--lg field--full"
+                id="bookingSubmit"
+                data-magnetic
+              >
+                Request Reservation <span class="arr">&#8594;</span>
+              </button>
+            </form>
+
+            <aside class="booking__aside">
+              <h3 class="aside__title">Good to know</h3>
+              <ul class="aside__list">
+                <li><span>Studio</span><b>Appointment or Attending</b></li>
+                <li>
+                  <span>Arrival</span><b>5 min early, coffee&rsquo;s on us</b>
+                </li>
+                <!-- <li><span>Cancellation</span><b>Free up to 12h before</b></li> -->
+                <li>
+                  <span>Questions</span
+                  ><a
+                    href="#"
+                    data-social="whatsapp"
+                    target="_blank"
+                    rel="noopener"
+                    >WhatsApp us &#8599;</a
+                  >
+                </li>
+              </ul>
+            </aside>
+          </div>
         </div>
+      </section>
 
-        <div class="booking__grid">
-          <form class="booking__form" id="bookingForm" novalidate>
-            <div class="field">
-              <label for="fullName">Full name</label>
-              <input type="text" id="fullName" name="name" autocomplete="name" placeholder="Your name" required>
-              <span class="field__bar"></span>
-            </div>
-            <div class="field">
-              <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+1 555 000 0000" required>
-              <span class="field__bar"></span>
-            </div>
-            <div class="field field--select">
-              <label for="serviceSelect">Service</label>
-              <select id="serviceSelect" name="service" required>
-                <option value="" disabled selected>Select a service</option>
-              </select>
-              <span class="field__chevron" aria-hidden="true">&#8595;</span>
-            </div>
-            <div class="field field--select">
-              <label for="barberSelect">Preferred barber <span class="opt">(optional)</span></label>
-              <select id="barberSelect" name="barber">
-                <option value="No preference" selected>No preference</option>
-              </select>
-              <span class="field__chevron" aria-hidden="true">&#8595;</span>
-            </div>
-            <div class="field">
-              <label for="dateInput">Date</label>
-              <input type="date" id="dateInput" name="date" required>
-              <span class="field__bar"></span>
-            </div>
-            <div class="field">
-              <label for="timeInput">Time</label>
-              <input type="time" id="timeInput" name="time" required>
-              <span class="field__bar"></span>
-            </div>
-            <div class="field field--full">
-              <label for="notesInput">Additional notes <span class="opt">(optional)</span></label>
-              <textarea id="notesInput" name="notes" rows="3" placeholder="Reference photos, allergies, anything we should know&hellip;"></textarea>
-              <span class="field__bar"></span>
-            </div>
-            <button type="submit" class="btn btn--solid btn--lg field--full" id="bookingSubmit" data-magnetic>
-              Confirm Booking <span class="arr">&#8594;</span>
-            </button>
-          </form>
-
-          <aside class="booking__aside">
-            <h3 class="aside__title">Good to know</h3>
-            <ul class="aside__list">
-              <li><span>Studio</span><b>Appointment only</b></li>
-              <li><span>Arrival</span><b>5 min early, coffee&rsquo;s on us</b></li>
-              <li><span>Cancellation</span><b>Free up to 12h before</b></li>
-              <li><span>Questions</span><a href="#" data-social="whatsapp" target="_blank" rel="noopener">WhatsApp us &#8599;</a></li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
+      <!-- ==========================================================
          08 — LOCATION
          ========================================================== -->
-    <section class="location section" id="location" data-section="#location">
-      <div class="container">
-        <p class="eyebrow" data-reveal><span class="eyebrow__line"></span>08 &mdash; Find Us</p>
-        <h2 class="display location__title" data-reveal>Find the <em>room<b>.</b></em></h2>
+      <section class="location section" id="location" data-section="#location">
+        <div class="container">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__line"></span>08 &mdash; Find Us
+          </p>
+          <h2 class="display location__title" data-reveal>
+            Find the <em>room<b>.</b></em>
+          </h2>
 
-        <div class="location__grid">
-          <div class="location__info" data-reveal-group>
-            <div class="loc-block">
-              <h3 class="loc-block__label">Location</h3>
-              <!-- TODO: replace with the real address -->
-              <p class="loc-block__value">Studio 4, 128 Meridian Ave<br>City Center</p>
-              <a class="link-book maps-link" href="#" data-social="maps" target="_blank" rel="noopener">Open in Maps <span class="arr">&#8594;</span></a>
+          <div class="location__grid">
+            <div class="location__info" data-reveal-group>
+              <div class="loc-block">
+                <h3 class="loc-block__label">Location</h3>
+                <!-- TODO: replace with the real address -->
+                <p class="loc-block__value">
+                  Sayed Marei St., Kafr Nassar<br />Al Haram, Giza
+                </p>
+                <a
+                  class="link-book maps-link"
+                  href="https://maps.app.goo.gl/9Et2z1rvEUAuyHYt8"
+                  data-social="maps"
+                  target="_blank"
+                  rel="noopener"
+                  >Open in Maps <span class="arr">&#8594;</span></a
+                >
+              </div>
+              <div class="loc-block">
+                <h3 class="loc-block__label">Opening hours</h3>
+                <ul class="hours" id="hoursList"></ul>
+              </div>
+              <div class="loc-block">
+                <h3 class="loc-block__label">Phone</h3>
+                <!-- TODO: replace with the real phone number -->
+                <a
+                  class="loc-block__value loc-link"
+                  href="tel:+201152876653
+"
+                  >+201152876653
+                </a>
+              </div>
+              <div class="loc-block">
+                <h3 class="loc-block__label">WhatsApp</h3>
+                <a
+                  class="loc-block__value loc-link"
+                  href="https://wa.me/201203679154"
+                  data-social="whatsapp"
+                  target="_blank"
+                  rel="noopener"
+                  >Message us &#8599;</a
+                >
+              </div>
             </div>
-            <div class="loc-block">
-              <h3 class="loc-block__label">Opening hours</h3>
-              <ul class="hours" id="hoursList"></ul>
-            </div>
-            <div class="loc-block">
-              <h3 class="loc-block__label">Phone</h3>
-              <!-- TODO: replace with the real phone number -->
-              <a class="loc-block__value loc-link" href="tel:+15550100100">+1 (555) 010-0100</a>
-            </div>
-            <div class="loc-block">
-              <h3 class="loc-block__label">WhatsApp</h3>
-              <a class="loc-block__value loc-link" href="#" data-social="whatsapp" target="_blank" rel="noopener">Message us &#8599;</a>
-            </div>
+
+            <figure class="map-frame" data-reveal>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.5539634808624!2d31.143456399999994!3d29.992246099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458456e265a232f%3A0xb1374a510c511a24!2sAdri%26loka!5e0!3m2!1sen!2seg!4v1788282063806!5m2!1sen!2seg"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+              <figcaption class="map-frame__chip">
+                <img
+                  class="map-chip-logo"
+                  src="assets/logo/adri-loka-logo.png"
+                  alt=""
+                  width="1135"
+                  height="1134"
+                />
+                <span>ADRI &amp; LOKA &mdash; Al Haram, Giza</span>
+              </figcaption>
+            </figure>
           </div>
-
-          <figure class="map-frame" data-reveal>
-            <iframe id="mapFrame" title="ADRI &amp; LOKA Barbershop on Google Maps" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <figcaption class="map-frame__chip">
-              <img class="map-chip-logo" src="assets/logo/adri-loka-logo.png" alt="" width="1135" height="1134">
-              <span>ADRI &amp; LOKA &mdash; City Center</span>
-            </figcaption>
-          </figure>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <!-- ============================================================
+    <!-- ============================================================
        FOOTER
        ============================================================ -->
-  <footer class="footer">
-    <div class="container footer__top">
-      <p class="footer__statement">Not just a barbershop.<br><em>An experience.</em></p>
-      <a class="footer__cta" href="#booking">Book your chair <span class="arr">&#8594;</span></a>
-    </div>
-
-    <div class="container footer__cols">
-      <div class="footer__col footer__col--brand">
-        <a class="header__brand" href="#home" aria-label="ADRI &amp; LOKA — back to top">
-          <img class="brand-logo brand-logo--footer" src="assets/logo/adri-loka-logo.png" alt="ADRI &amp; LOKA Barbershop" width="1135" height="1134">
-        </a>
-        <p class="footer__tag">Barbershop.<br>Est. 2020.</p>
+    <footer class="footer">
+      <div class="container footer__top">
+        <p class="footer__statement">
+          Not just a barbershop.<br /><em>An experience.</em>
+        </p>
+        <a class="footer__cta" href="#booking"
+          >Book your chair <span class="arr">&#8594;</span></a
+        >
       </div>
-      <nav class="footer__col" aria-label="Footer navigation">
-        <h3 class="footer__heading">Navigate</h3>
-        <ul>
-          <li><a href="#story">Story</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#lookbook">Lookbook</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#booking">Booking</a></li>
-          <li><a href="#location">Location</a></li>
-        </ul>
-      </nav>
-      <nav class="footer__col" aria-label="Services">
-        <h3 class="footer__heading">Services</h3>
-        <ul id="footerServices"></ul>
-      </nav>
-      <div class="footer__col">
-        <h3 class="footer__heading">Contact</h3>
-        <ul>
-          <li><a href="tel:+15550100100">+1 (555) 010-0100</a></li>
-          <li><a href="#" data-social="whatsapp" target="_blank" rel="noopener">WhatsApp &#8599;</a></li>
-          <li><a href="#" data-social="instagram" target="_blank" rel="noopener">Instagram &#8599;</a></li>
-          <li><a href="#" data-social="facebook" target="_blank" rel="noopener">Facebook &#8599;</a></li>
-        </ul>
+
+      <div class="container footer__cols">
+        <div class="footer__col footer__col--brand">
+          <a
+            class="header__brand"
+            href="#home"
+            aria-label="ADRI &amp; LOKA — back to top"
+          >
+            <img
+              class="brand-logo brand-logo--footer"
+              src="assets/logo/adri-loka-logo.png"
+              alt="ADRI &amp; LOKA Barbershop"
+              width="1135"
+              height="1134"
+            />
+          </a>
+          <p class="footer__tag">Barbershop.<br />Est. 2020.</p>
+        </div>
+        <nav class="footer__col" aria-label="Footer navigation">
+          <h3 class="footer__heading">Navigate</h3>
+          <ul>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#lookbook">Lookbook</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#location">Location</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__col" aria-label="Services">
+          <h3 class="footer__heading">Services</h3>
+          <ul id="footerServices"></ul>
+        </nav>
+        <div class="footer__col">
+          <h3 class="footer__heading">Contact</h3>
+          <ul>
+            <li>
+              <a
+                href="tel:+201152876653
+"
+                >+201152876653
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/201203679154"
+                data-social="whatsapp"
+                target="_blank"
+                rel="noopener"
+                >WhatsApp &#8599;</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/adriloka.eg/"
+                data-social="instagram"
+                target="_blank"
+                rel="noopener"
+                >Instagram &#8599;</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/profile.php?id=61584799082603"
+                data-social="facebook"
+                target="_blank"
+                rel="noopener"
+                >Facebook &#8599;</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@adriloka.eg"
+                data-social="Tiktok"
+                target="_blank"
+                rel="noopener"
+                >Tiktok &#8599;</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__heading">Hours</h3>
+          <ul class="hours hours--footer" id="hoursListFooter"></ul>
+        </div>
       </div>
-      <div class="footer__col">
-        <h3 class="footer__heading">Hours</h3>
-        <ul class="hours hours--footer" id="hoursListFooter"></ul>
+
+      <div class="footer__giant" aria-hidden="true">
+        <span>ADRI&nbsp;&amp;&nbsp;LOKA</span>
       </div>
-    </div>
 
-    <div class="footer__giant" aria-hidden="true"><span>ADRI&nbsp;&amp;&nbsp;LOKA</span></div>
+      <div class="container footer__base">
+        <p>
+          &copy; <span id="yearNow">2026</span> ADRI &amp; LOKA Barbershop. All
+          rights reserved.
+        </p>
+        <p>Sharp cuts. Strong presence.</p>
+      </div>
+    </footer>
 
-    <div class="container footer__base">
-      <p>&copy; <span id="yearNow">2026</span> ADRI &amp; LOKA Barbershop. All rights reserved.</p>
-      <p>Sharp cuts. Strong presence.</p>
-    </div>
-  </footer>
-
-  <!-- ============================================================
+    <!-- ============================================================
        LIGHTBOX (fullscreen image modal)
        ============================================================ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-    <button class="lightbox__close" id="lbClose" aria-label="Close viewer">&times;</button>
-    <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="Previous image">&#8592;</button>
-    <figure class="lightbox__figure">
-      <img id="lbImg" src="" alt="">
-      <figcaption id="lbCaption"></figcaption>
-    </figure>
-    <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="Next image">&#8594;</button>
-  </div>
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+      hidden
+    >
+      <button class="lightbox__close" id="lbClose" aria-label="Close viewer">
+        &times;
+      </button>
+      <button
+        class="lightbox__nav lightbox__prev"
+        id="lbPrev"
+        aria-label="Previous image"
+      >
+        &#8592;
+      </button>
+      <figure class="lightbox__figure">
+        <img id="lbImg" src="" alt="" />
+        <figcaption id="lbCaption"></figcaption>
+      </figure>
+      <button
+        class="lightbox__nav lightbox__next"
+        id="lbNext"
+        aria-label="Next image"
+      >
+        &#8594;
+      </button>
+    </div>
 
-  <!-- ============================================================
+    <!-- ============================================================
        BOOKING SUCCESS OVERLAY
        ============================================================ -->
-  <div class="success" id="successOverlay" role="status" aria-live="polite" hidden>
-    <div class="success__card">
-      <svg class="success__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <circle class="success__circle" cx="32" cy="32" r="28" stroke="var(--bronze)" stroke-width="1.5"/>
-        <path class="success__check" d="M20 33 L29 42 L45 24" stroke="var(--ivory)" stroke-width="2"/>
-      </svg>
-      <h3 class="success__title">Thank you.<br><em>Your appointment request has been received<b>.</b></em></h3>
-      <p class="success__summary" id="successSummary"></p>
-      <p class="success__wa">Opening WhatsApp<span class="success__dots">&#8230;</span></p>
-      <button class="btn btn--ghost" id="successClose" type="button">Done</button>
+    <div
+      class="success"
+      id="successOverlay"
+      role="status"
+      aria-live="polite"
+      hidden
+    >
+      <div class="success__card">
+        <svg
+          class="success__mark"
+          viewBox="0 0 64 64"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle
+            class="success__circle"
+            cx="32"
+            cy="32"
+            r="28"
+            stroke="var(--bronze)"
+            stroke-width="1.5"
+          />
+          <path
+            class="success__check"
+            d="M20 33 L29 42 L45 24"
+            stroke="var(--ivory)"
+            stroke-width="2"
+          />
+        </svg>
+        <h3 class="success__title">
+          Thank you.<br /><em
+            >Your appointment request has been received<b>.</b></em
+          >
+        </h3>
+        <p class="success__summary" id="successSummary"></p>
+        <p class="success__wa">
+          Opening WhatsApp<span class="success__dots">&#8230;</span>
+        </p>
+        <button class="btn btn--ghost" id="successClose" type="button">
+          Done
+        </button>
+      </div>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
