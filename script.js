@@ -7,7 +7,7 @@
    ============================================================ */
 const CONFIG = {
   // WhatsApp number, digits only with country code (e.g. 15550100100)
-  whatsappNumber: "201063333165",
+  whatsappNumber: "201152876653",
 
   // Social links — replace '#' with real URLs
   instagramUrl: "https://www.instagram.com/adriloka.eg/",
