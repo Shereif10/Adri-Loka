@@ -1081,34 +1081,85 @@ const MENU_DATA = [
       };
 
       /* Horizontal swipe feeds the same scroll position, content follows
-         the finger just like the native vertical swipe. */
+         the finger just like the native vertical swipe — and on release it
+         gets the same inertial glide the browser gives a vertical flick
+         (velocity taken from the finger, capped, decayed, boundary-safe). */
       let tX = 0, tY = 0;
+      let momRaf = 0, momVel = 0, momLast = 0;
+      const samples = [];
+      const stopMomentum = () => {
+        if (momRaf) cancelAnimationFrame(momRaf);
+        momRaf = 0;
+        momVel = 0;
+      };
+      const momentumStep = now => {
+        const dt = Math.min(64, now - momLast);
+        momLast = now;
+        scrollPage(momVel * dt);
+        momVel *= Math.pow(0.95, dt / 16.7);
+        if (
+          Math.abs(momVel) < 0.02 ||
+          !tween.scrollTrigger || !tween.scrollTrigger.isActive ||
+          document.documentElement.classList.contains('lock')
+        ) { momRaf = 0; return; }
+        momRaf = requestAnimationFrame(momentumStep);
+      };
       const onTouchStart = e => {
+        stopMomentum();
         tX = e.touches[0].clientX;
         tY = e.touches[0].clientY;
+        samples.length = 0;
       };
       const onTouchMove = e => {
         if (!tween.scrollTrigger || !tween.scrollTrigger.isActive) return;
         if (document.documentElement.classList.contains('lock')) return;
-        const dx = e.touches[0].clientX - tX;
-        const dy = e.touches[0].clientY - tY;
+        const cx = e.touches[0].clientX;
+        const cy = e.touches[0].clientY;
+        const dx = cx - tX;
+        const dy = cy - tY;
+        tX = cx;
+        tY = cy;
+        samples.push({ t: e.timeStamp, x: cx });
+        while (samples.length > 2 && e.timeStamp - samples[0].t > 100) samples.shift();
         if (Math.abs(dx) <= Math.abs(dy)) return;
         e.preventDefault();
         scrollPage(-dx);
-        tX = e.touches[0].clientX;
-        tY = e.touches[0].clientY;
+      };
+      const onTouchEnd = () => {
+        if (samples.length >= 2) {
+          const last = samples[samples.length - 1];
+          let first = samples[0];
+          for (let i = 0; i < samples.length; i++) {
+            if (last.t - samples[i].t <= 100) { first = samples[i]; break; }
+          }
+          const dt = last.t - first.t;
+          if (dt >= 16) {
+            const v = (first.x - last.x) / dt; /* scroll px/ms, finger direction */
+            if (Math.abs(v) >= 0.15) {
+              momVel = Math.max(-2.5, Math.min(2.5, v));
+              momLast = performance.now();
+              momRaf = requestAnimationFrame(momentumStep);
+            }
+          }
+        }
+        samples.length = 0;
       };
       window.addEventListener('wheel', onWheel, { passive: false });
       window.addEventListener('touchstart', onTouchStart, { passive: true });
       window.addEventListener('touchmove', onTouchMove, { passive: false });
+      window.addEventListener('touchend', onTouchEnd, { passive: true });
+      window.addEventListener('touchcancel', onTouchEnd, { passive: true });
 
       return () => {
+        stopMomentum();
         tween.scrollTrigger && tween.scrollTrigger.kill();
         tween.kill();
         gsap.set(track, { clearProps: 'all' });
         window.removeEventListener('wheel', onWheel);
         window.removeEventListener('touchstart', onTouchStart);
         window.removeEventListener('touchmove', onTouchMove);
+        window.removeEventListener('touchend', onTouchEnd);
+        window.removeEventListener('touchcancel', onTouchEnd);
       };
     });
   }
