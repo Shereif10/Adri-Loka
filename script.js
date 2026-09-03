@@ -1083,9 +1083,16 @@ const MENU_DATA = [
       /* Horizontal swipe feeds the same scroll position, content follows
          the finger just like the native vertical swipe — and on release it
          gets the same inertial glide the browser gives a vertical flick
-         (velocity taken from the finger, capped, decayed, boundary-safe). */
+         (velocity taken from the finger, capped, decayed, boundary-safe).
+         It is live as soon as any part of the menu viewport is on screen;
+         the swipe then advances the same scroll mapping into/through the
+         pin, so there is no dead zone before the pin engages. */
+      const menuVisible = () => {
+        const r = pin.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+      };
       let tX = 0, tY = 0;
-      let momRaf = 0, momVel = 0, momLast = 0;
+      let momRaf = 0, momVel = 0, momLast = 0, momWasActive = false;
       const samples = [];
       const stopMomentum = () => {
         if (momRaf) cancelAnimationFrame(momRaf);
@@ -1097,10 +1104,15 @@ const MENU_DATA = [
         momLast = now;
         scrollPage(momVel * dt);
         momVel *= Math.pow(0.95, dt / 16.7);
+        const active = !!(tween.scrollTrigger && tween.scrollTrigger.isActive);
+        if (active) momWasActive = true;
+        /* Stop on natural exhaustion, lock, or once the glide crosses a
+           menu boundary — except a forward glide that is still approaching
+           the pin from above (menu visible, not yet pinned). */
         if (
           Math.abs(momVel) < 0.02 ||
-          !tween.scrollTrigger || !tween.scrollTrigger.isActive ||
-          document.documentElement.classList.contains('lock')
+          document.documentElement.classList.contains('lock') ||
+          (!active && (momWasActive || momVel < 0))
         ) { momRaf = 0; return; }
         momRaf = requestAnimationFrame(momentumStep);
       };
@@ -1111,7 +1123,7 @@ const MENU_DATA = [
         samples.length = 0;
       };
       const onTouchMove = e => {
-        if (!tween.scrollTrigger || !tween.scrollTrigger.isActive) return;
+        if (!tween.scrollTrigger || !menuVisible()) return;
         if (document.documentElement.classList.contains('lock')) return;
         const cx = e.touches[0].clientX;
         const cy = e.touches[0].clientY;
@@ -1137,6 +1149,7 @@ const MENU_DATA = [
             const v = (first.x - last.x) / dt; /* scroll px/ms, finger direction */
             if (Math.abs(v) >= 0.15) {
               momVel = Math.max(-2.5, Math.min(2.5, v));
+              momWasActive = false;
               momLast = performance.now();
               momRaf = requestAnimationFrame(momentumStep);
             }
